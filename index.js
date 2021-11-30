@@ -17,6 +17,7 @@ const customMorgan = morgan((tokens, req, res) => {
 app.use(customMorgan)
 app.use(express.json())
 app.use(cors())
+app.use(express.static('build'))
 
 let persons = [
     { 
