@@ -37,10 +37,14 @@ app.use(express.static('build'))
     res.send('<h1>Hello World!</h1>')
   })  
   
-  app.get('/info', (req, res) => {
-    const amount = Person.find({}).length
-    const date = new Date()
-    res.send(`Phonebook has info for ${amount} people</p><p>${date}</p>`)
+  app.get('/info', (req, res, next) => {
+    Person.find({})
+      .then(data => {
+        const amount = data.length
+        const date = new Date()
+        res.send(`Phonebook has info for ${amount} people</p><p>${date}</p>`)
+      })
+      .catch(error => next(error))    
   })
   
   app.get('/api/persons', (req, res) => {
