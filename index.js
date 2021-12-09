@@ -18,8 +18,12 @@ const customMorgan = morgan((tokens, req, res) => {
 const errorHandler = (error, req, res, next) => {
   console.error(error.message)
 
-  if (error.name == 'CastError') {
+  if (error.name === 'CastError') {
     return res.status(400).send({ error: 'Malformatted id' })
+  }
+  else if (error.name === 'ValidationError') {
+    /* console.log(error.message) */
+    return res.status(400).json({ error: error.message })
   }
   next(error)
 }
@@ -75,7 +79,7 @@ app.use(express.static('build'))
       .catch(error => next(error))
   })
 
-  app.post('/api/persons', (req, res) => {
+  app.post('/api/persons', (req, res, next) => {
     const body = req.body
 
     if (!body.name) {
@@ -100,9 +104,11 @@ app.use(express.static('build'))
       date: new Date()
     })
 
-    person.save().then(savedPerson => {
-      res.json(savedPerson)
-    })
+    person.save()
+      .then(savedPerson => {
+        res.json(savedPerson)
+      })
+      .catch(error => next(error))
   })
 
   app.put('/api/persons/:id', (req, res, next) => {
