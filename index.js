@@ -1,4 +1,4 @@
-require('dotenv').config()
+// require('dotenv').config()
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
@@ -22,7 +22,6 @@ const errorHandler = (error, req, res, next) => {
         return res.status(400).send({ error: 'Malformatted id' })
     }
     else if (error.name === 'ValidationError') {
-        /* console.log(error.message) */
         return res.status(400).json({ error: error.message })
     }
     next(error)
@@ -39,6 +38,10 @@ app.use(express.static('build'))
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
+})
+
+app.get('/health', (req, res) => {
+    res.send('1')
 })
 
 app.get('/info', (req, res, next) => {
@@ -116,7 +119,7 @@ app.use(unknownEndpoint)
 app.use(errorHandler)
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })

@@ -7,7 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:e2e": "cypress run"
   },
   "author": "Vilhelm Toivonen",
   "license": "MIT",
@@ -22,7 +23,9 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
+    "cypress": "^9.2.1",
     "eslint": "^8.4.1",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-react": "^7.27.1",
     "nodemon": "^2.0.15"
   }
