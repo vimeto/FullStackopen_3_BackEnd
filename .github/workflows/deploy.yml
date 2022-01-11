@@ -23,6 +23,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_SECRET}}
           heroku_app_name: "fullstackopen-firstbackend"
           heroku_email: "vilhelm.toivonen@gmail.com"
-          healthcheck: "https://fullstackopen-firstbackend.herokuapp.com//health"
+          healthcheck: "https://fullstackopen-firstbackend.herokuapp.com/health"
           checkstring: "1"
           rollbackonhealthcheckfailed: true
