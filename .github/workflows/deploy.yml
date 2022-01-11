@@ -1,0 +1,28 @@
+name: Deployment pipeline to deploy
+
+on:
+  push:
+    branches:
+      - vime-dev
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: npm install
+        run: npm install
+      - name: lint
+        run: npm run lint
+      - name: deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_SECRET}}
+          heroku_app_name: "fullstackopen-firstbackend"
+          heroku_email: "vilhelm.toivonen@gmail.com"
+          healthcheck: "https://fullstackopen-firstbackend.herokuapp.com//health"
+          checkstring: "1"
+          rollbackonhealthcheckfailed: true
