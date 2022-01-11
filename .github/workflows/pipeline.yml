@@ -22,4 +22,4 @@ jobs:
         with:
           command: npm run test:e2e
           start: MONGODB_URI=${{secrets.MONGODB_URI}} npm run start
-          wait-on: http://localhost:3001
+          wait-on: http://localhost:5000
