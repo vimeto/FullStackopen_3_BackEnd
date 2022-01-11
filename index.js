@@ -40,6 +40,10 @@ app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
 
+app.get('/health', (req, res) => {
+    res.send('1')
+})
+
 app.get('/info', (req, res, next) => {
     Person.find({})
         .then(data => {
