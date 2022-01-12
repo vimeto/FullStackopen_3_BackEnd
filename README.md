@@ -6,5 +6,5 @@
   - (note! you need to specify MONGODB_URI inline!)
 
 ## Links
-App: https://fullstackopen-firstbackend.herokuapp.com/  
+App live: https://fullstackopen-firstbackend.herokuapp.com/  
 Pokedex repo: https://github.com/vimeto/full-stack-open-pokedex
